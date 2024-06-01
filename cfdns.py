@@ -20,6 +20,8 @@ api_key = os.environ.get('CLOUDFLARE_API_KEY')
 zone_id = os.environ.get('ZONE_ID')
 # Set the DNS record details
 dns_record_name = os.environ.get('DNS_RECORD_NAME')
+# Set the DNS record ID
+dns_record_id = os.environ.get('DNS_RECORD_ID')
 
 if not api_key:
     print('Cloudflare API key is not set in environment variables.')
@@ -33,7 +35,7 @@ if not zone_id:
 new_ip_address = get_current_ip()
 if new_ip_address:
     # Construct the API request URL
-    url = f'https://api.cloudflare.com/client/v4/zones/{zone_id}/dns_records'
+    url = f'https://api.cloudflare.com/client/v4/zones/{zone_id}/dns_records/{dns_record_id}'
     headers = {
         'Authorization': f'Bearer {api_key}',
         'Content-Type': 'application/json'
@@ -45,7 +47,7 @@ if new_ip_address:
     }
 
     # Send the API request to update the DNS record
-    response = requests.post(url, headers=headers, json=data)
+    response = requests.patch(url, headers=headers, json=data)
 
     # Check the response status
     if response.status_code == 200:
