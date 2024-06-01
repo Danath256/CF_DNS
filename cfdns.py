@@ -16,15 +16,18 @@ def get_current_ip():
 
 # Get Cloudflare API key from environment variable
 api_key = os.environ.get('CLOUDFLARE_API_KEY')
+# Set your Zone ID
+zone_id = os.environ.get('ZONE_ID')
+# Set the DNS record details
+dns_record_name = os.environ.get('DNS_RECORD_NAME')
+
 if not api_key:
     print('Cloudflare API key is not set in environment variables.')
     exit()
 
-# Set your Zone ID
-zone_id = 'your_zone_id'
-
-# Set the DNS record details
-dns_record_name = 'example.com'
+if not zone_id:
+    print('Cloudflare Zone ID is not set in environment variables.')
+    exit()
 
 # Fetch current IP address
 new_ip_address = get_current_ip()
