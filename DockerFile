@@ -1,5 +1,4 @@
 FROM alpine:latest
 WORKDIR /cfdns
 COPY cfdns.py .
-RUN apk add --no-cache python3
-RUN pip install requests
+RUN apk add --no-cache python3 py3-pip py3-requests

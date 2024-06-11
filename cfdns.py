@@ -14,7 +14,7 @@ def get_current_ip():
         print('An error occurred while fetching current IP address:', e)
         return None
 
-# Get Cloudflare API key from environment variable
+# Set Cloudflare API key from environment variable
 api_token = os.environ.get('CLOUDFLARE_API_TOKEN')
 # Set your Zone ID
 zone_id = os.environ.get('ZONE_ID')
